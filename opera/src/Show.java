@@ -19,6 +19,10 @@ public class Show {
         }
     }
 
+    public void printDirector() {
+        System.out.println(director);
+    }
+
     public void addActor(Actor actor) {
         for (Actor act : actors) {
             // тут по факту можно и без null, но будто бы мы работаем с актерами,
@@ -39,5 +43,30 @@ public class Show {
             }
         }
         System.out.println("Актёр с фамилией " + surname + " не найден");
+    }
+
+    @Override
+    public String toString() {
+        return title + " (" + duration + " мин), режиссёр: " + director;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Show)) return false;
+        Show that = (Show) o;
+        return duration == that.duration &&
+                title.equals(that.title) &&
+                director.equals(that.director) &&
+                actors.equals(that.actors);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title.hashCode();
+        result = 31 * result + duration;
+        result = 31 * result + director.hashCode();
+        result = 31 * result + actors.hashCode();
+        return result;
     }
 }

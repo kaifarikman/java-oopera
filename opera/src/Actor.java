@@ -8,7 +8,7 @@ public class Actor extends Person {
 
     @Override
     public String toString() {
-        return name + " " + surname + " (" + height + ")";
+        return super.toString() + " (" + height + ")";
     }
 
     @Override
@@ -16,15 +16,12 @@ public class Actor extends Person {
         if (this == o) return true;
         if (!(o instanceof Actor)) return false;
         Actor that = (Actor) o;
-        return height == that.height &&
-                name.equals(that.name) &&
-                surname.equals(that.surname);
+        return height == that.height && super.equals(that);
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + surname.hashCode();
+        int result = super.hashCode();
         result = 31 * result + height;
         return result;
     }
